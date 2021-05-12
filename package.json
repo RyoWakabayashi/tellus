@@ -1,0 +1,30 @@
+{
+  "name": "tellus",
+  "version": "1.0.0",
+  "description": "Tellus python sample",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "fix": "eslint --fix ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyoWakabayashi/tellus.git"
+  },
+  "author": "RyoWakabayashi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RyoWakabayashi/tellus/issues"
+  },
+  "homepage": "https://github.com/RyoWakabayashi/tellus#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "husky": "^6.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
