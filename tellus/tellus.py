@@ -16,14 +16,18 @@ class Tellus:
 
     api_token = ""
     market_token = ""
+    expires_at = datetime.datetime.now()
 
     def __init__(self, api_token):
         self.api_token = api_token
 
     def _get(self, url, payload={}):  # pylint: disable=dangerous-default-value
+        if self.expires_at < datetime.datetime.now().astimezone():
+            self.auth()
         headers = {"Authorization": "Bearer " + self.market_token}
         response = requests.get(url, headers=headers, params=payload)
         if response.status_code != 200:
+            print(response.status_code)
             print(response.content)
             return None
         return response.content
@@ -38,7 +42,16 @@ class Tellus:
             print(response.content)
             return
         res = json.loads(response.content)
+        self.expires_at = datetime.datetime.strptime(
+            res["expires_at"], "%Y-%m-%dT%H:%M:%S.%f%z"
+        )
         self.market_token = res["token"]
+
+    def auth(self):
+        """
+        Authenticate for API
+        """
+        print("Implement it in a child class.")
 
     def auth_v2(self, product_id):
         """

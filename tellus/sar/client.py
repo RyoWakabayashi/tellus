@@ -21,7 +21,9 @@ class Client:
         """
         scene_list = self.tellus.get_free_scene()
         for scene in scene_list["data"]["scenes"]:
-            print(scene["scene_id"], scene["observation_datetime"])
+            print(
+                scene["scene_id"], scene["observation_datetime"], scene["polarisations"]
+            )
 
     def get_after(self, scene_id):
         """
@@ -31,7 +33,9 @@ class Client:
         """
         scene_list = self.tellus.get_scene_after(scene_id)
         for scene in scene_list["data"]["scenes"]:
-            print(scene["scene_id"], scene["observation_datetime"])
+            print(
+                scene["scene_id"], scene["observation_datetime"], scene["polarisations"]
+            )
 
     def request(self, before, after, polarisation):
         """
